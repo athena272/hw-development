@@ -9,7 +9,8 @@ const terser = require('gulp-terser');
 const paths = {
     scss: {
         src: './assets/scss/main.scss',
-        dest: './assets/scss',
+        dest: './assets/css',
+        dest_min: './assets/dist/css',
         watch: './assets/scss/**/*.scss'
     },
     js: {
@@ -22,7 +23,10 @@ const paths = {
 function compileScss() {
     return gulp.src(paths.scss.src)
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest(paths.scss.dest));
+        .pipe(gulp.dest(paths.scss.dest))
+        .pipe(minifyCSS())
+        .pipe(concat('main.min.css'))
+        .pipe(gulp.dest(paths.scss.dest_min));
 }
 
 function minifyJs() {
