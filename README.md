@@ -4,6 +4,8 @@ Olá! Este é o resultado do desafio proposto no processo seletivo. Desenvolvi u
 
 **🌐 Acesse o projeto online:** [https://athena272.github.io/hw-development/](https://athena272.github.io/hw-development/)
 
+**🎥 Vídeo de demonstração:** [https://youtu.be/JCJe8Xe97Ec](https://youtu.be/JCJe8Xe97Ec)
+
 ## ✨ Principais Destaques do Projeto
 
 *   **▶️ Layout Dinâmico com Base no Vídeo**: O conteúdo principal da página, incluindo as ofertas, só aparece após o vídeo atingir 20:14. Criei essa funcionalidade para engajar o usuário e apresentar a oferta no momento certo.
