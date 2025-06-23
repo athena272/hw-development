@@ -93,15 +93,19 @@
         </section>
 
         <div id="vsl-hidden-content" class="vsl-hidden-content">
-            <section id="vsl-countdown-section" class="py-4 countdown-bar">
+
+            <!-- Countdown Timer Section: Starts after video reaches the required time -->
+            <!-- First counter -->
+            <section class="py-4 countdown-bar">
                 <div class="container text-center text-white">
                     <h5 class="mb-0">
                         Claim Your Discounted Natty Lean! Now While Supplies Last!
-                        <span id="countdown-timer" class="fw-bold ms-2">20:00</span>
+                        <span class="countdown-timer fw-bold ms-2">20:00</span>
                     </h5>
                 </div>
             </section>
 
+            <!-- First offers sections -->
             <section id="vsl-offers-section" class="py-5">
                 <div class="container">
                     <h2 class="text-center mb-5 fw-bold">Choose Your Package</h2>
@@ -253,12 +257,108 @@
                 </div>
             </section>
 
+            <!-- Countdown Timer Section: Starts after video reaches the required time -->
+            <!-- Second counter -->
+            <section class="py-4 countdown-bar">
+                <div class="container text-center text-white">
+                    <h5 class="mb-0">
+                        Claim Your Discounted Natty Lean! Now While Supplies Last!
+                        <span class="countdown-timer fw-bold ms-2">20:00</span>
+                    </h5>
+                </div>
+            </section>
+
+            <!-- Second offers sections -->
+            <section id="vsl-offers-section" class="py-5">
+                <div class="container">
+                    <h2 class="text-center mb-5 fw-bold">Choose Your Package</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6 mb-4 order-lg-2">
+                            <div class="offer-card offer-card--best-value h-100">
+                                <div class="offer-card__header">
+                                    <h3 class="offer-card__title">6 Bottles</h3>
+                                    <span class="offer-card__badge">Best Value</span>
+                                </div>
+                                <img src="./assets/images/img-6-bottles.webp" alt="6 Bottles of Natty Lean"
+                                    class="offer-card__img">
+                                <div class="offer-card__body">
+                                    <p class="offer-card__supply">180 Days Supply</p>
+                                    <p class="offer-card__price">
+                                        <span class="offer-card__price-total">$294</span>
+                                        <span class="offer-card__price-per-bottle">$49/bottle</span>
+                                    </p>
+                                    <p class="offer-card__original-price">Full Price: <s>$1074</s></p>
+                                    <ul class="offer-card__features">
+                                        <li>60 Days Guarantee</li>
+                                        <li><strong class="text-danger">73% OFF</strong></li>
+                                        <li><strong>FREE Shipping</strong></li>
+                                    </ul>
+                                    <button class="btn btn-primary w-100 btn-lg offer-card__btn" data-bs-toggle="modal"
+                                        data-bs-target="#purchaseModal" data-qty="6" data-total="294"
+                                        data-name="6 Bottle Pack">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4 order-lg-3">
+                            <div class="offer-card h-100">
+                                <div class="offer-card__header">
+                                    <h3 class="offer-card__title">3 Bottles</h3>
+                                </div>
+                                <img src="./assets/images/img-3-bottles.webp" alt="3 Bottles of Natty Lean"
+                                    class="offer-card__img">
+                                <div class="offer-card__body">
+                                    <p class="offer-card__supply">90 Days Supply</p>
+                                    <p class="offer-card__price">
+                                        <span class="offer-card__price-total">$207</span>
+                                        <span class="offer-card__price-per-bottle">$69/bottle</span>
+                                    </p>
+                                    <p class="offer-card__original-price">Full Price: <s>$537</s></p>
+                                    <ul class="offer-card__features">
+                                        <li>60 Days Guarantee</li>
+                                        <li><strong class="text-danger">61% OFF</strong></li>
+                                        <li><strong>FREE Shipping</strong></li>
+                                    </ul>
+                                    <button class="btn btn-primary w-100 btn-lg offer-card__btn" data-bs-toggle="modal"
+                                        data-bs-target="#purchaseModal" data-qty="3" data-total="207"
+                                        data-name="3 Bottle Pack">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4 order-lg-1">
+                            <div class="offer-card h-100">
+                                <div class="offer-card__header">
+                                    <h3 class="offer-card__title">2 Bottles</h3>
+                                </div>
+                                <img src="./assets/images/img-2-bottles.webp" alt="2 Bottles of Natty Lean"
+                                    class="offer-card__img">
+                                <div class="offer-card__body">
+                                    <p class="offer-card__supply">60 Days Supply</p>
+                                    <p class="offer-card__price">
+                                        <span class="offer-card__price-total">$158</span>
+                                        <span class="offer-card__price-per-bottle">$79/bottle</span>
+                                    </p>
+                                    <p class="offer-card__original-price">Full Price: <s>$358</s></p>
+                                    <ul class="offer-card__features">
+                                        <li>60 Days Guarantee</li>
+                                        <li><strong class="text-danger">56% OFF</strong></li>
+                                        <li>$9.99 Shipping</li>
+                                    </ul>
+                                    <button class="btn btn-primary w-100 btn-lg offer-card__btn" data-bs-toggle="modal"
+                                        data-bs-target="#purchaseModal" data-qty="2" data-total="158"
+                                        data-name="2 Bottle Pack">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="vsl-faq-section" class="py-5">
                 <div class="container">
                     <h2 class="text-center mb-5 fw-bold">Frequently Asked Questions</h2>
                     <div class="accordion" id="faqAccordion">
 
-                        <!-- Pergunta 1 -->
+                        <!-- Question 1 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -277,7 +377,7 @@
                             </div>
                         </div>
 
-                        <!-- Pergunta 2 -->
+                        <!-- Question 2 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingTwo">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -295,7 +395,7 @@
                             </div>
                         </div>
 
-                        <!-- Pergunta 3 -->
+                        <!-- Question 3 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingThree">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -313,7 +413,7 @@
                             </div>
                         </div>
 
-                        <!-- Pergunta 4 -->
+                        <!-- Question 4 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingFour">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -331,7 +431,7 @@
                             </div>
                         </div>
 
-                        <!-- Pergunta 5 -->
+                        <!-- Question 5 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingFive">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -349,7 +449,7 @@
                             </div>
                         </div>
 
-                        <!-- Pergunta 6 -->
+                        <!-- Question 6 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingSix">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -366,6 +466,102 @@
                             </div>
                         </div>
 
+                    </div>
+                </div>
+            </section>
+
+            <!-- Countdown Timer Section: Starts after video reaches the required time -->
+            <!-- Third counter -->
+            <section class="py-4 countdown-bar">
+                <div class="container text-center text-white">
+                    <h5 class="mb-0">
+                        Claim Your Discounted Natty Lean! Now While Supplies Last!
+                        <span class="countdown-timer fw-bold ms-2">20:00</span>
+                    </h5>
+                </div>
+            </section>
+
+            <!-- Third offers sections -->
+            <section id="vsl-offers-section" class="py-5">
+                <div class="container">
+                    <h2 class="text-center mb-5 fw-bold">Choose Your Package</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6 mb-4 order-lg-2">
+                            <div class="offer-card offer-card--best-value h-100">
+                                <div class="offer-card__header">
+                                    <h3 class="offer-card__title">6 Bottles</h3>
+                                    <span class="offer-card__badge">Best Value</span>
+                                </div>
+                                <img src="./assets/images/img-6-bottles.webp" alt="6 Bottles of Natty Lean"
+                                    class="offer-card__img">
+                                <div class="offer-card__body">
+                                    <p class="offer-card__supply">180 Days Supply</p>
+                                    <p class="offer-card__price">
+                                        <span class="offer-card__price-total">$294</span>
+                                        <span class="offer-card__price-per-bottle">$49/bottle</span>
+                                    </p>
+                                    <p class="offer-card__original-price">Full Price: <s>$1074</s></p>
+                                    <ul class="offer-card__features">
+                                        <li>60 Days Guarantee</li>
+                                        <li><strong class="text-danger">73% OFF</strong></li>
+                                        <li><strong>FREE Shipping</strong></li>
+                                    </ul>
+                                    <button class="btn btn-primary w-100 btn-lg offer-card__btn" data-bs-toggle="modal"
+                                        data-bs-target="#purchaseModal" data-qty="6" data-total="294"
+                                        data-name="6 Bottle Pack">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4 order-lg-3">
+                            <div class="offer-card h-100">
+                                <div class="offer-card__header">
+                                    <h3 class="offer-card__title">3 Bottles</h3>
+                                </div>
+                                <img src="./assets/images/img-3-bottles.webp" alt="3 Bottles of Natty Lean"
+                                    class="offer-card__img">
+                                <div class="offer-card__body">
+                                    <p class="offer-card__supply">90 Days Supply</p>
+                                    <p class="offer-card__price">
+                                        <span class="offer-card__price-total">$207</span>
+                                        <span class="offer-card__price-per-bottle">$69/bottle</span>
+                                    </p>
+                                    <p class="offer-card__original-price">Full Price: <s>$537</s></p>
+                                    <ul class="offer-card__features">
+                                        <li>60 Days Guarantee</li>
+                                        <li><strong class="text-danger">61% OFF</strong></li>
+                                        <li><strong>FREE Shipping</strong></li>
+                                    </ul>
+                                    <button class="btn btn-primary w-100 btn-lg offer-card__btn" data-bs-toggle="modal"
+                                        data-bs-target="#purchaseModal" data-qty="3" data-total="207"
+                                        data-name="3 Bottle Pack">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4 order-lg-1">
+                            <div class="offer-card h-100">
+                                <div class="offer-card__header">
+                                    <h3 class="offer-card__title">2 Bottles</h3>
+                                </div>
+                                <img src="./assets/images/img-2-bottles.webp" alt="2 Bottles of Natty Lean"
+                                    class="offer-card__img">
+                                <div class="offer-card__body">
+                                    <p class="offer-card__supply">60 Days Supply</p>
+                                    <p class="offer-card__price">
+                                        <span class="offer-card__price-total">$158</span>
+                                        <span class="offer-card__price-per-bottle">$79/bottle</span>
+                                    </p>
+                                    <p class="offer-card__original-price">Full Price: <s>$358</s></p>
+                                    <ul class="offer-card__features">
+                                        <li>60 Days Guarantee</li>
+                                        <li><strong class="text-danger">56% OFF</strong></li>
+                                        <li>$9.99 Shipping</li>
+                                    </ul>
+                                    <button class="btn btn-primary w-100 btn-lg offer-card__btn" data-bs-toggle="modal"
+                                        data-bs-target="#purchaseModal" data-qty="2" data-total="158"
+                                        data-name="2 Bottle Pack">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
