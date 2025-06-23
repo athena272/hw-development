@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
             productImageEl.src = `./assets/images/${selectedBonus.productImg}`;
             bonusContentEl.innerHTML = `
                 <p>For your purchase of <strong>${qty} bottles</strong>, you’ll receive the ebook <strong>'${selectedBonus.title}'</strong>. ENJOY!</p>
-                <img src="./assets/images/${selectedBonus.image}" alt="${selectedBonus.title}" class="img-fluid" style="max-width: 250px;">
+                <img src="./assets/images/${selectedBonus.image}" alt="${selectedBonus.title}" class="img-fluid" style="max-width: 250px;" loading="lazy">
             `;
         }
     }
