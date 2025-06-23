@@ -2,6 +2,8 @@
 
 Olá! Este é o resultado do desafio proposto no processo seletivo. Desenvolvi uma landing page de vendas (VSL) completa e funcional, com foco total em performance, experiência do usuário e nas melhores práticas de desenvolvimento front-end.
 
+**🌐 Acesse o projeto online:** [https://athena272.github.io/hw-development/](https://athena272.github.io/hw-development/)
+
 ## ✨ Principais Destaques do Projeto
 
 *   **▶️ Layout Dinâmico com Base no Vídeo**: O conteúdo principal da página, incluindo as ofertas, só aparece após o vídeo atingir 20:14. Criei essa funcionalidade para engajar o usuário e apresentar a oferta no momento certo.
