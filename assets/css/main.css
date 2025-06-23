@@ -70,7 +70,7 @@ body {
 }
 .offer-card__badge {
   position: absolute;
-  top: 10px;
+  top: 18px;
   right: -35px;
   background-color: #8DC63F;
   color: #ffffff;
@@ -85,14 +85,15 @@ body {
 }
 .offer-card__img {
   max-width: 100%;
-  height: auto;
+  height: 281px;
+  object-fit: contain;
   margin-bottom: 1rem;
 }
 .offer-card__body {
-  padding: 0 1.5rem 1.5rem;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  padding: 0 1.5rem 1.5rem;
 }
 .offer-card__supply {
   font-size: 1.1rem;
