@@ -2,13 +2,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     console.log('[DEBUG] DOM content fully loaded.');
 
-    // ===================================================================
+    // =========================================================================
     //  LOGIC FOR THE VSL PAGE (index.html)
-    // ===================================================================
+    // =========================================================================
     const vslPageIdentifier = document.getElementById('vsl-video-section');
     if (vslPageIdentifier) {
         console.log('[DEBUG] VSL page detected. Initializing VSL script.');
 
+        // Dynamically load YouTube IFrame API
         const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let player;
         let videoTriggered = false;
 
+        // This function is called automatically when the YouTube IFrame API is ready
         window.onYouTubeIframeAPIReady = function () {
             console.log('[DEBUG] YouTube IFrame API is ready.');
             try {
@@ -25,22 +27,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
                 console.log('[DEBUG] YouTube Player object created successfully:', player);
             } catch (error) {
-                console.error('[DEBUG] Failed to create YouTube Player. Is the iframe with id="youtube-player" present?', error);
+                console.error('[DEBUG] Failed to create YouTube Player. Check if iframe with id="youtube-player" exists.', error);
             }
         }
 
+        /**
+         * Trigger when YouTube Player state changes (e.g., playing, paused, ended)
+         */
         function onPlayerStateChange(event) {
             console.log(`[DEBUG] Player state changed. New state: ${event.data}`);
-            // YT.PlayerState.PLAYING is 1
+
+            // Start checking video time only once, after the video starts playing
             if (event.data == YT.PlayerState.PLAYING && !videoTriggered) {
-                console.log('[DEBUG] Video is playing. Starting to check time...');
+                console.log('[DEBUG] Video is playing. Starting to monitor time...');
                 const timeInterval = setInterval(() => {
                     const currentTime = player.getCurrentTime();
-                    console.log(`[DEBUG] Checking time: ${Math.round(currentTime)}s`);
+                    console.log(`[DEBUG] Checking current video time: ${Math.round(currentTime)}s`);
 
-                    // if (currentTime > 5) { // Test time set to 5 seconds
-                    if (currentTime > 1214) { // 20 minutes and 14 seconds
-                        console.log('%c[DEBUG] TRIGGER! Time threshold reached!', 'color: lightgreen; font-weight: bold;');
+                    if (currentTime > 1214) { // Trigger at 20 minutes and 14 seconds
+                        console.log('%c[DEBUG] TRIGGER! Video time threshold reached!', 'color: lightgreen; font-weight: bold;');
                         showHiddenContent();
                         clearInterval(timeInterval);
                         videoTriggered = true;
@@ -49,6 +54,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
+        /**
+         * Reveal hidden sections and start countdown timer
+         */
         function showHiddenContent() {
             console.log('[DEBUG] Executing showHiddenContent function.');
             const hiddenContent = document.getElementById('vsl-hidden-content');
@@ -56,55 +64,45 @@ document.addEventListener('DOMContentLoaded', function () {
                 hiddenContent.style.display = 'block';
                 console.log('[DEBUG] Hidden content is now visible.');
                 const twentyMinutes = 60 * 20;
-                const display = document.querySelector('#countdown-timer');
-                if (display) {
-                    console.log('[DEBUG] Starting countdown timer.');
-                    startCountdown(twentyMinutes, display);
-                }
+                console.log('[DEBUG] Starting countdown timer on all counters.');
+                startCountdown(twentyMinutes);
             }
         }
 
-        function startCountdown(duration, display) {
+        /**
+         * Countdown timer logic: updates all elements with .countdown-timer
+         * @param {number} duration - Total time in seconds
+         */
+        function startCountdown(duration) {
             let timer = duration, minutes, seconds;
+            const displays = document.querySelectorAll('.countdown-timer');
+
             const interval = setInterval(function () {
                 minutes = parseInt(timer / 60, 10);
                 seconds = parseInt(timer % 60, 10);
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-                display.textContent = minutes + ":" + seconds;
+                const timeString = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+                displays.forEach(display => {
+                    display.textContent = timeString;
+                });
+
                 if (--timer < 0) {
-                    timer = 0;
-                    display.textContent = "00:00";
+                    displays.forEach(display => {
+                        display.textContent = "00:00";
+                    });
                     clearInterval(interval);
                 }
             }, 1000);
         }
 
+        // =====================================================================
+        // Purchase Modal Logic (Bootstrap Modal for order finalization)
+        // =====================================================================
         const purchaseModal = document.getElementById('purchaseModal');
         if (purchaseModal) {
             console.log('[DEBUG] Purchase modal logic initialized.');
-            purchaseModal.addEventListener('show.bs.modal', function (event) {
-                const button = event.relatedTarget;
-                const selectedName = button.getAttribute('data-name');
-                console.log(`[DEBUG] Modal opened for product: ${selectedName}`);
-                // ... (resto da lógica do modal)
-            });
-            const finalizeBtn = document.getElementById('finalize-purchase-btn');
-            finalizeBtn.addEventListener('click', function () {
-                const customerName = document.getElementById('customer-name').value;
-                const customerEmail = document.getElementById('customer-email').value;
-                const selectedQty = purchaseModal.querySelector('#modal-product-name').getAttribute('data-qty-temp'); // Get data from modal
-                const selectedTotal = purchaseModal.querySelector('#modal-product-name').getAttribute('data-total-temp');
 
-                if (customerName.trim() === '' || customerEmail.trim() === '') {
-                    alert('Please fill in your name and email.');
-                    return;
-                }
-                console.log(`[DEBUG] Finalizing purchase. Redirecting to thank-you.html...`);
-                const thankYouUrl = `thank-you.html?name=${encodeURIComponent(customerName)}&email=${encodeURIComponent(customerEmail)}&qty=${selectedQty}&total=${selectedTotal}`;
-                window.location.href = thankYouUrl;
-            });
-
+            // Populate modal fields when it is shown
             purchaseModal.addEventListener('show.bs.modal', function (event) {
                 const button = event.relatedTarget;
                 const selectedQty = button.getAttribute('data-qty');
@@ -112,26 +110,48 @@ document.addEventListener('DOMContentLoaded', function () {
                 const selectedName = button.getAttribute('data-name');
                 const modalProductName = purchaseModal.querySelector('#modal-product-name');
                 modalProductName.textContent = selectedName;
-                // Store data temporarily on an element for the finalize button to access
+
+                // Store selected quantity and total as temporary data for checkout
                 modalProductName.setAttribute('data-qty-temp', selectedQty);
                 modalProductName.setAttribute('data-total-temp', selectedTotal);
+                console.log(`[DEBUG] Modal data populated for product: ${selectedName}`);
+            });
+
+            // Handle purchase finalization button click
+            const finalizeBtn = document.getElementById('finalize-purchase-btn');
+            finalizeBtn.addEventListener('click', function () {
+                const customerName = document.getElementById('customer-name').value;
+                const customerEmail = document.getElementById('customer-email').value;
+                const selectedQty = purchaseModal.querySelector('#modal-product-name').getAttribute('data-qty-temp');
+                const selectedTotal = purchaseModal.querySelector('#modal-product-name').getAttribute('data-total-temp');
+
+                if (customerName.trim() === '' || customerEmail.trim() === '') {
+                    alert('Please fill in your name and email.');
+                    return;
+                }
+
+                console.log('[DEBUG] Finalizing purchase and redirecting to Thank You page.');
+                const thankYouUrl = `thank-you.html?name=${encodeURIComponent(customerName)}&email=${encodeURIComponent(customerEmail)}&qty=${selectedQty}&total=${selectedTotal}`;
+                window.location.href = thankYouUrl;
             });
         }
     }
 
-    // ===================================================================
-    //  LOGIC FOR THE THANK YOU PAGE (thank-you.html)
-    // ===================================================================
+    // =========================================================================
+    // LOGIC FOR THE THANK YOU PAGE (thank-you.html)
+    // =========================================================================
     const thankyouPageIdentifier = document.getElementById('thankyou-title-section');
     if (thankyouPageIdentifier) {
-        // 1. Get data from URL
+        console.log('[DEBUG] Thank You page detected. Initializing content population...');
+
+        // Extract data from URL params
         const urlParams = new URLSearchParams(window.location.search);
         const name = urlParams.get('name');
         const email = urlParams.get('email');
         const qty = urlParams.get('qty');
         const total = urlParams.get('total');
 
-        // 2. Get references to placeholder elements
+        // Populate placeholders with customer info
         const customerNameEl = document.getElementById('customer-name-placeholder');
         const customerEmailEl = document.getElementById('customer-email-placeholder');
         const productImageEl = document.getElementById('product-image-placeholder');
@@ -139,17 +159,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const productTotalEl = document.getElementById('product-total-placeholder');
         const bonusContentEl = document.getElementById('bonus-content-placeholder');
 
-        // 3. Populate general info
         if (name) customerNameEl.textContent = name;
         if (email) customerEmailEl.textContent = email;
         if (qty) productQtyEl.textContent = qty;
         if (total) productTotalEl.textContent = total;
 
-        // 4. Define bonus and product image data
-        let bonusImage = '';
-        let bonusText = '';
-        let productImage = '';
-
+        // Define product bonus mapping
         const bonuses = {
             '2': {
                 image: 'bonus3.webp',
@@ -168,13 +183,12 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         };
 
+        // Display the correct bonus based on quantity
         const selectedBonus = bonuses[qty];
-
-        // 5. Apply the specific bonus and product image
         if (selectedBonus) {
             productImageEl.src = `./assets/images/${selectedBonus.productImg}`;
             bonusContentEl.innerHTML = `
-                <p>For your purchase of <strong>${qty} bottles</strong>, you’ll receive the ebook <strong>'${selectedBonus.title}'</strong>, ENJOY!</p>
+                <p>For your purchase of <strong>${qty} bottles</strong>, you’ll receive the ebook <strong>'${selectedBonus.title}'</strong>. ENJOY!</p>
                 <img src="./assets/images/${selectedBonus.image}" alt="${selectedBonus.title}" class="img-fluid" style="max-width: 250px;">
             `;
         }
