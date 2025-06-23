@@ -32,8 +32,8 @@ Para visualizar e desenvolver o projeto localmente, siga os passos abaixo:
 
 1.  **Clone o repositório:**
     ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    cd seu-repositorio
+    git clone https://github.com/athena272/hw-development.git
+    cd hw-development
     ```
 
 2.  **Instale as dependências de desenvolvimento:**
